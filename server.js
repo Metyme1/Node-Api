@@ -25,6 +25,7 @@ app.use(cors(corsOptions))
 
 app.use('/api/product',productRoute);
 app.use('/api/user', userRoute);
+app.use('/api/orders', orderRoute);
 
 app.get('/',(req,res)=>{
     // throw new error ('fake error')
