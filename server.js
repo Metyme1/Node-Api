@@ -59,7 +59,7 @@ app.put('/product/:id', async (req, res) => {
         res.status(500).json({message:error.message})
     }
 })
-// Delete
+// Deletee
 
 app.delete('/product/:id', async (req, res) => {
     try {
