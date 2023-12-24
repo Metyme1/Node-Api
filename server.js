@@ -3,6 +3,7 @@ const express = require ('express')
 const app = express ()
 const productRoute = require('./route/routeproduct')
 const userRoute = require('./route/userroute')
+const orderRoute = require('./route/orderroute');
 const errorMiddlware = require('./middleware/errormiddleware')
 var cors = require('cors')
 
@@ -25,7 +26,7 @@ app.use(cors(corsOptions))
 
 app.use('/api/product',productRoute);
 app.use('/api/user', userRoute);
-app.use('/api/orders', orderRoute);
+app.use('/api/order', orderRoute);
 
 app.get('/',(req,res)=>{
     // throw new error ('fake error')
