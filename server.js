@@ -3,6 +3,7 @@ const express = require ('express')
 const app = express ()
 const productRoute = require('./route/routeproduct')
 const userroute = require('./route/userroute')
+const errorMiddlware = require('./middleware/errormiddleware')
 
 const mongoose = require ('mongoose')
 
@@ -15,9 +16,11 @@ app.use(express.urlencoded({extended:false}))
 
 app.use('/api/product',productRoute);
 app.get('/',(req,res)=>{
+    // throw new error ('fake error')
     res.send("hello")
 
 })
+ app.use(errorMiddlware);
 
 mongoose.set("strictQuery", false)
 mongoose.
