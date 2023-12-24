@@ -4,14 +4,23 @@ const app = express ()
 const productRoute = require('./route/routeproduct')
 const userroute = require('./route/userroute')
 const errorMiddlware = require('./middleware/errormiddleware')
+var cors = require('cors')
+
 
 const mongoose = require ('mongoose')
 
 const MONGO_URL = process.env.MONGO_URL
 const PORT = process.env.PORT || 3000
 
+var corsOptions = {
+    origin: 'add ip address here',
+    optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
+  }
+
+
 app.use(express.json())
 app.use(express.urlencoded({extended:false}))
+app.use(cors(corsOptions))
 // routes
 
 app.use('/api/product',productRoute);
