@@ -2,7 +2,7 @@ require('dotenv').config()
 const express = require ('express')
 const app = express ()
 const productRoute = require('./route/routeproduct')
-const userroute = require('./route/userroute')
+const userRoute = require('./route/userroute')
 const errorMiddlware = require('./middleware/errormiddleware')
 var cors = require('cors')
 
@@ -14,7 +14,7 @@ const PORT = process.env.PORT || 3000
 
 var corsOptions = {
     origin: 'add ip address here',
-    optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
+    optionsSuccessStatus: 200
   }
 
 
@@ -24,6 +24,8 @@ app.use(cors(corsOptions))
 // routes
 
 app.use('/api/product',productRoute);
+app.use('/api/user', userRoute);
+
 app.get('/',(req,res)=>{
     // throw new error ('fake error')
     res.send("hello")
