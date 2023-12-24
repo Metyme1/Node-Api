@@ -1,46 +1,11 @@
 const express = require ('express');
 const router = express.Router();
 const Product = require('../model/productmodel')
-const {getProduct} = require('../controller/productController')
-router.get('/', )
-router.get('/:id',async(req,res)=>{
-    try{
-        const {id}= req.params;
-        const product = await Product.findById(id);
-        res.status(200).json(product)
-    }catch(error){
-        res.status(500).json({message:error.message})
-    }
-})
-router.post('/',async (req,res)=>{
-   try{
-    const product = await Product.create(req.body)
-    res.status(200).json(product)
-
-   } catch (error){
-    console.log(error.message);
-    res.status(500).json({message:error.message})
-   }
-})
-// update
-
-
-router.put('/:id', async (req, res) => {
-
-
-    try{
-        const {id} = req.params;
-        const product = await Product.findByIdAndUpdate(id,req.body);
-        if(!product){
-            return res.status(404).json({message: 'cannot find'})
-        }
-        const updateProduct = await Product.findById(id);
-        res.status(200).json(updateProduct);
-    }
-    catch(error){
-        res.status(500).json({message:error.message})
-    }
-})
+const {getProducts, getProduct,postproduct,updateProduct} = require('../controller/productController')
+router.get('/', getProducts)
+router.get('/:id',getProduct)
+router.post('/',postproduct)
+router.put('/:id', updateProduct)
 // Deletee
 
 router.delete('/:id', async (req, res) => {
